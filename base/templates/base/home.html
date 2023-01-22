@@ -1,0 +1,21 @@
+{% extends 'main.html' %}
+
+{% block content%}
+
+<h1>Home Template</h1>
+
+<div>
+
+    <div>
+        {% for author in authors %}
+            <div>
+                <span>@{{author.host.username}}</span>
+                <h5>{{author.id}} -- <a href="{% url 'author' author.id %}">{{author.name}}</a> </author></h5>
+                <hr>
+            </div>
+
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}
