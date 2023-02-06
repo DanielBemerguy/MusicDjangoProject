@@ -1,0 +1,42 @@
+body {
+    background-color: #1e90ff;
+}
+
+h1,
+h2,
+h3 {
+    color: #ffffff;
+    text-shadow: 1px 1px #333;
+}
+
+.content {
+    color: #333;
+    font-size: 1.2em;
+    line-height: 1.5;
+}
+
+.music-name,
+.band-name {
+    color: #ff6600;
+    font-weight: bold;
+}
+
+.user-name {
+    color: #1e90ff;
+    font-style: italic;
+}
+
+.band-container {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+}
+
+.profile-container {
+    display: grid;
+    grid-template-columns: 1fr 3fr 1fr;
+}
+
+.home-container {
+    display: grid;
+    grid-template-columns: 1fr 3fr 1fr;
+}

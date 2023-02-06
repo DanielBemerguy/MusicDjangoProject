@@ -1,21 +1,34 @@
 {% extends 'main.html' %}
 
-{% block content%}
+{% block content %}
 
-<h1>Home Template</h1>
+<style>
+    .home-container {
+    display: grid;
+    grid-template-columns: 1fr 3fr 1fr;
+}
 
-<div>
+</style>
+
+<div class="home-container">
 
     <div>
-        {% for author in authors %}
-            <div>
-                <span>@{{author.host.username}}</span>
-                <h5>{{author.id}} -- <a href="{% url 'author' author.id %}">{{author.name}}</a> </author></h5>
-                <hr>
-            </div>
+        {%include 'base/rhythm_component.html'%}
+    </div>
 
-        {% endfor %}
+    <div>
+        <h5>{{band_count}} Items Founded </h5>   
+        <div>
+            {% include 'base/feed_component.html' %}
+        </div>
+
+
+    </div>
+
+    <div>
+    {% include 'base/activity_component.html' %}
+
     </div>
 </div>
 
-{% endblock %}
+{% endblock content %}

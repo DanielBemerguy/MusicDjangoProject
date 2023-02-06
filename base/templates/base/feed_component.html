@@ -1,0 +1,22 @@
+{% for band in bands %}
+<div>
+    {% if request.user == band.host %}
+    <a href="{%url 'update-band' band.id %}">Edit</a>
+    <a href="{%url 'delete-band' band.id %}">Delete</a>
+    
+    {% endif %}
+
+
+    <h1><a href="{% url 'band' band.id %}">{{band.name}}</a></h1>
+    <div>
+        {% for music in musics %}
+        {% if band.id == music.band.id %}
+        <h3> <a href="{% url 'music' music.id %}"> {{music.name}}</a> </h3>
+        {% endif %}
+        {% endfor %}
+        </div>
+    <small>{{band.rhythm.name}}</small>
+    <hr>
+</div>
+
+{% endfor %}

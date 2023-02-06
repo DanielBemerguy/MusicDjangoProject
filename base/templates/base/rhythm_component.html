@@ -1,0 +1,11 @@
+<div>
+    <a href="{% url 'home' %}"><h3>Rhythms</h3></a>
+    <hr>
+</div>
+
+{% for rhythm in rhythms %}
+<div>
+    <a href="{% url 'home' %}?q={{rhythm.name}}"> {{rhythm.name}} </a>
+</div>
+
+{% endfor %}

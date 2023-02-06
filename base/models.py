@@ -1,51 +1,48 @@
 from django.db import models
 from django.contrib.auth.models import User
-
 # Create your models here.
-# i need to write right or diferent to be good at the site?
+
+
+class Rhythm(models.Model):
+    name = models.CharField(max_length=100)
+    
+    def __str__(self):
+        return self.name
+
+
+class Band(models.Model):
+    host = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
+    rhythm = models.ForeignKey(Rhythm, on_delete=models.SET_NULL, null=True)
+    name = models.CharField(max_length=100)
+    description = models.TextField(null=True, blank=True)
+    participants = models.ManyToManyField(User, related_name='participants', blank=True)
+    created = models.DateTimeField(auto_now_add=True)
+    class Meta:
+        ordering = ['-created']
+    
+    def __str__(self):
+        return self.name
+
+
+class Music(models.Model):
+    band = models.ForeignKey(Band, on_delete=models.CASCADE)
+    name = models.CharField(max_length=100)
+    youtubelink = models.CharField(max_length=100)
+    
+    def __str__(self):
+        return self.name
 
 
 
-# class Curiosity(models.Model):
-#     user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
-#     # title = models.ForeignKey(Title, on_delete=models.SET_NULL, null=True)
-#     curiosity = models.TextField(null=True, blank=True)
-
-#     def __str__(self):
-#         return self.curiosity
-
-
-
-
-class Author(models.Model):
-    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
-    author = models.CharField(max_length=200)
-    about = models.TextField(null=True, blank=True)
+class Message(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    band = models.ForeignKey(Band, on_delete=models.CASCADE)
+    body = models.TextField()
     updated = models.DateTimeField(auto_now=True)
     created = models.DateTimeField(auto_now_add=True)
 
-    def __str__(self):
-        return self.author
-
-class Title(models.Model):
-    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
-    author = models.ForeignKey(Author, on_delete=models.SET_NULL, null=True)
-    title = models.CharField(max_length=200)
-    curiosity = models.TextField(null=True, blank=True)
-
+    class Meta:
+        ordering = ['-updated', '-created']
 
     def __str__(self):
-        return self.title
-
-
-class Comment(models.Model):
-    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
-    author = models.ForeignKey(Author, on_delete=models.SET_NULL, null=True)
-    title = models.ForeignKey(Title, on_delete=models.SET_NULL, null=True)
-    comment = models.TextField()
-    updated = models.DateTimeField(auto_now=True)
-    created = models.DateTimeField(auto_now_add=True)
-
-    def __str__(self):
-        return self.comment[0:50]
-
+        return self.body[0:50]

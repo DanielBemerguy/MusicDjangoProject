@@ -2,9 +2,9 @@ from django.contrib import admin
 
 # Register your models here.
 
-from.models import Author, Title
+from.models import Band, Rhythm, Message, Music
 
-admin.site.register(Author)
-# admin.site.register(Curiosity)
-# admin.site.register(Comment)
-admin.site.register(Title)
+admin.site.register(Band)
+admin.site.register(Music)
+admin.site.register(Rhythm)
+admin.site.register(Message)
